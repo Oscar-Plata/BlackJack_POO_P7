@@ -4,48 +4,48 @@
  * and open the template in the editor.
  */
 package practicas.blackjack_poo_p7;
+
 import java.util.ArrayList;
+import java.util.Collections;
+
 /**
- * Dealer
- * 
+ * Dealer, jugador encargado de entregar cartas y revolver la baraja
+ * controlado por la computadora.
+ *
  * @author Oscar JL Plata
- * @version (13/10/21
+ * @version (19/10/21)
  */
 public class Dealer {
 
-    private ArrayList<Carta> mano;
+    private Jugador dealerJ;
 
     /**
      * Constructor for objects of class Jugador
      */
-    public Dealer()
-    {
-        this.mano= new ArrayList<>(5);
+    public Dealer() {
+        this.dealerJ = new Jugador();
     }
 
-    public void recibirCartas(ArrayList<Carta> recibido){
-        this.mano=recibido;
-    }
-    
-    public void agregarCarta(Carta c){
-        mano.add(c);
+    public Baraja revolverBaraja(Baraja b) {
+        b.revolver();
+        return b;
     }
 
-    public void mostrarCartas(){
-        int c=mano.size();
-        for(int i=0;i<c;i++){
-            System.out.println(mano.get(c).toString()+"\n");
-        }
-
+    public void darDosCartas(Jugador j, Baraja b) {
+        Carta c1 = b.darCarta();
+        System.out.println("Carta 1: " + c1 + " Carta 2: [???]");
+        Carta c2 = b.darCarta();
+        j.agregarCarta(c1);
+        j.agregarCarta(c2);
     }
-    
-    
+
+    public Jugador dealerJugador() {
+        return dealerJ;
+    }
+
     @Override
-    public String toString(){
-       String inf="Cantidad Cartas: "+mano.size()+" ";
-        for(int i=0;i<mano.size();i++){
-            inf=inf.concat(mano.get(i).toString()+" ");
-        }
+    public String toString() {
+        String inf = dealerJ.toString();
         return inf;
-    }  
+    }
 }
