@@ -17,14 +17,12 @@ public class Blackjack {
     private Dealer dealer;
     private Jugador jugador;
     private Baraja baraja;
-    private boolean hayGanador;
 
     public Blackjack() {
         this.dealer = new Dealer();
         this.jugador = new Jugador();
         this.baraja = new Baraja();
         baraja.llenarBaraja();
-        this.hayGanador = false;
     }
 
     public void entregaInicial() {
@@ -73,7 +71,6 @@ public class Blackjack {
         int dSum=dealer.dealerJugador().sumarCartas();
         int jSum=jugador.sumarCartas();
         if((jugador.statusJuego()==false)){
-            this.hayGanador=true;
             if(jSum<=21 &&(dSum>21||dSum<jSum)){
                 System.out.println("Gano el JUGADOR!");
             }else if(dSum<=21&&(jSum>21||jSum<dSum)){
@@ -96,16 +93,8 @@ public class Blackjack {
         this.jugador = new Jugador();
         this.baraja = new Baraja();
         baraja.llenarBaraja();
-        this.hayGanador = false;
     }
 
-    public void setHayGanador(boolean hayGanador) {
-        this.hayGanador = hayGanador;
-    }
-
-    public boolean isHayGanador() {
-        return hayGanador;
-    }
 
     public Dealer getDealer() {
         return dealer;
